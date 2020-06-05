@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect   
-from .models import Post
+from .models import Family, Member, Image
 from .utils import upload_and_save
 
 def home(request):

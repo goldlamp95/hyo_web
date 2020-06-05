@@ -2,12 +2,27 @@ from django.db import models
 
 class Member(models.Model):
     name= models.CharField(max_length = 50)
-    password = models.CharField(max_length = 50)
+    individual_id= models.CharField(max_length = 50)
+    individual_password= models.CharField(max_length =50)
+    family_password = models.ForeignKey(Family, db_column= 'family_password', on_delete = models.CASCADE, related_name ='passwords')
     birthday = models.DateTimeField()
-    img = models.TextField()
+    profile = models.TextField()
 
     def __str__(self):
         return self.name
 
-class Family(modles.Model):
-    family= models.ForeignKey(Member, on_delete = models.CASCADE, related_name='passwords')
+class Family(models.Model):
+    family_name = models.CharField(max_length =100)
+    family_password= models.CharField(max_length = 50)
+
+
+class Image(models.Model):
+    image= models.TextField()
+    content= models.TextField(null=True)
+    image_author= models.ForeignKey(User, on_delete = models.CASCADE, related_name ='images')
+
+class Comment(models.Model):
+    post= models.ForeignKey(Image, on_delete= models.CASCADE, related_name ='comments')
+    author = models.ForeignKey(User, on_delete= models.CASCADE, related_name='comments')
+    content = models.TextField(null = True)
+
