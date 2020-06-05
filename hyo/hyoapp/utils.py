@@ -20,7 +20,7 @@ def upload_and_save(request, file_to_upload):
         Body = file_to_upload
     )
     s3_url = 'https://hyohyobucket.s3.ap-northeast-2.amazonaws.com/'
-    post = Post.objects.create(
+    image = Image.objects.create(
         image = s3_url + user.pk+ now + file_to_upload.name
         content = request.POST['content']
         image_author = request.user

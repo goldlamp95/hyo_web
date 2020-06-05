@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib
 
 class Member(models.Model):
     name= models.CharField(max_length = 50)
@@ -19,7 +20,7 @@ class Family(models.Model):
 class Image(models.Model):
     image= models.TextField()
     content= models.TextField(null=True)
-    image_author= models.ForeignKey(User, on_delete = models.CASCADE, related_name ='images')
+    image_author= models.ForeignKey(Member, on_delete = models.CASCADE, related_name ='images')
 
 class Comment(models.Model):
     post= models.ForeignKey(Image, on_delete= models.CASCADE, related_name ='comments')

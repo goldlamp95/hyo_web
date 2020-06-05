@@ -1,0 +1,10 @@
+{{% for member in members %}}
+    {{member.profile}}
+    <a href="indiv_home/{{member.pk}}"><img/></a>
+{{% endfor %}}
+
+{{% for image in images %}}
+    {{image.image}}
+    {{image.content}}
+{{image.image_author}}
+{{% endfor %}}
