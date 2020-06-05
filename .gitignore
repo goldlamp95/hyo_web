@@ -1,0 +1,5 @@
+.vscode
+migrations
+db.sqlite3
+__pyache__
+hyo/hyo/config
