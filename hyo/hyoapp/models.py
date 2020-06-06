@@ -45,3 +45,9 @@ class Todolist (models.Model):
     def __str__(self):
         return self.task
 
+class Dday (models.Model):
+    title = models.CharField(max_length=50)
+    due = models.DateTimeField()
+
+
+
