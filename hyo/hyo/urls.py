@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from hyoapp import views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name="home"),
+    path('registration/login', views.login, name="login"),
+    path('registration/signup', views.signup, name = "signup"),
+    path('registration/family_signup', views.family_signup, name="family_signup"),
+    path('registration/logout', views.logout, name="logout")
 ]
