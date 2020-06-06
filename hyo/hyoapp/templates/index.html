@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href={% static "index.css"%}>
+{% endblock %}
+{% block content %}
+<div class="all">
+    <div class="box_logo">
+        <img class="logo" src={% static "../static/image/icon/logo_v3.png" %} alt="My Image">
+    </div>
+    <div class="inner_login">
+        <div class="login_tistory">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="field">
+                    <legend class="screen_out">로그인 정보 입력폼</legend>
+                    <div class="box_login">
+                        <div class="inp_text">
+                        <label for="loginId" class="screen_out">아이디</label>
+                        <input type="email" id="loginId" name="username" placeholder="아이디">
+                        </div>
+                        <div class="inp_text">
+                        <label for="loginPw" class="screen_out">비밀번호</label>
+                        <input type="password" id="loginPw" name="password" placeholder="비밀번호">
+                        </div>
+                    </div>
+                    <div class="for_btn_login">
+                        <button type="submit" class="btn_login" disabled="">로그인</button>
+                        <a class="sign_up" href="{% url 'signup' %}">회원가입</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+<div class="nav-bar">
+    <a class="nav-item" href="{% url 'home' %}">HOME</a>
+    {% if user.is_authenticated %}
+    <div class="nav-item">안녕하세요, {{ user.username }} </div>
+    <a class="nav-item" href="{% url 'logout' %}">로그아웃</a>
+    {% else %}
+    <a class="nav-item" href="{% url 'login' %}">로그인</a>
+    <a class="nav-item" href="{% url 'signup' %}">회원가입</a>
+    {% endif %}
+</div>   

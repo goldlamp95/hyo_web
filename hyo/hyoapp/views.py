@@ -27,9 +27,6 @@ def new(request):
         return redirect('home')
     return render(request, 'new.html')
 
-        
-
-
 def home(request):
     images = Image.objects.all()
     members = Member.objects.all()
@@ -179,6 +176,7 @@ def family_signup(request):
 def logout(request):
     auth.logout(request)
     return redirect('home')
+
 def todo(request):
     tasks = Todolist.objects.all().order_by('due')
     context = {'tasks': tasks}
@@ -241,3 +239,5 @@ def mission(request):
     mission_list = Mission.objects.all()
     return render(request, 'mission.html', {'mission_list': mission_list})
 
+def index(request):
+    return render(request, 'index.html')    

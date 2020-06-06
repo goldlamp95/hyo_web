@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -12,15 +12,5 @@
 <body>
     {% block content %}
     {% endblock %}
-    <div class="nav-bar">
-        <a class="nav-item" href="{% url 'home' %}">HOME</a>
-        {% if user.is_authenticated %}
-        <div class="nav-item">안녕하세요, {{ user.username }} </div>
-        <a class="nav-item" href="{% url 'logout' %}">로그아웃</a>
-        {% else %}
-        <a class="nav-item" href="{% url 'login' %}">로그인</a>
-        <a class="nav-item" href="{% url 'signup' %}">회원가입</a>
-        {% endif %}
-    </div>   
 </body>
 </html>
