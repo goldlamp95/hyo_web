@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static '../static/mission.css'%}">
+{% endblock %}
+{% block content %}
 <body>
     <div class="mission_title">
         <div></div>
         <h1>Your mission</h1>
-        <div>mission points</div>
+        <div class="point">15pt</div>
     </div>
    
     <div class="mission_tree">
-        <div>tree img</div>
-        <div>tree name</div>
+        <img class="tree" src="{% static 'image/icon/tree.png' %}"></div>
+        <div>행복한 푸른 나무가 자랐습니다!</div>
     </div>
 
     <div class="your_mission">
@@ -27,4 +25,4 @@
     {% endfor%}
     </div>
 </body>
-</html>
+{% endblock %}
