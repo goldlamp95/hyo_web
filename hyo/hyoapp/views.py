@@ -70,7 +70,7 @@ def todo_delete(request, task_pk):
 def dday(request):
     ddays = Dday.objects.all().order_by('deadline')
     count = Dday.objects.count()
-    context = {'ddays' = ddays, 'count' = count}
+    context = {'ddays' : ddays, 'count' : count}
     return render(request,'dday.html', context)
 
 def count(y_m_d):

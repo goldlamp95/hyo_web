@@ -28,7 +28,7 @@ urlpatterns = [
     path('todo', views.todo, name='todo'),
     path('todo_new',views.todo_new, name='todo_new'),
     path('todo_delete', views.todo_delete, name='todo_delete'),
-    path('dday', views.dday, name='dday').
+    path('dday', views.dday, name='dday'),
     path('dday_new', views.dday_new, name='dday_new'),
     path('dday_delete', views.dday_delete, name='dday_delete')
 ]
