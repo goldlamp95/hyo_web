@@ -1,5 +1,5 @@
 from .models import Family, Member, Image, Comment
-from hyo.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STROAGE_BUCKET_NAME, AWS_S3_REGION_NAME
+from hyo.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME, AWS_S3_REGION_NAME
 import boto3
 from boto3.session import Session
 from datetime import datetime

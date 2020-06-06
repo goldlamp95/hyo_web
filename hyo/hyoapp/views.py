@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Family, Member, Image, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import auth
 from .utils import upload_and_save
 def new(request):
     if (request.method == 'POST'):      
@@ -100,6 +101,24 @@ def family_signup(request):
         found_family = Family.objects.filter(family_name = request.POST['family_name'])
         found_user = User.objects.filter(username=request.POST['individual_id'])
 
+        file_to_upload = request.FILES.get('profile_pic')
+        print('111🧓🏼',file_to_upload)
+        session = Session(
+            aws_access_key_id = AWS_ACCESS_KEY_ID,
+            aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
+            region_name = AWS_S3_REGION_NAME
+        )
+
+        s3 = session.resource('s3')
+
+        now = datetime.now().strftime("%Y%H%M%S")
+        img_object = s3.Bucket(AWS_STORAGE_BUCKET_NAME).put_object(
+            Key = str(request.user.pk)+'/' + now +file_to_upload.name,
+            Body = file_to_upload
+        )
+
+        s3_url = 'https://hyohyobucket.s3.ap-northeast-2.amazonaws.com/'
+
         if (len(found_family)>0) : 
             error = '해당 가족 이름은 이미 존재합니다'
             return render(request, 'registration/family_signup.html', {'error': error})
@@ -108,6 +127,8 @@ def family_signup(request):
         if(len(found_user)>0):
             error = 'username이 이미 존재합니다' 
             return render(request, 'registration/signup.html', {'error' : error})
+
+
         new_family = Family.objects.create(
             family_name = request.POST['family_name'],
             family_password = request.POST['family_password']
@@ -118,9 +139,9 @@ def family_signup(request):
             password = request.POST['individual_password']      
     
         )
-
+        
         new_member = Member.objects.create (
-            name = request.POST['name'],
+            name = request.POST.get('name', False),
             individual_id= User.objects.get(username = new_user.username),
             individual_password= User.objects.get(password=new_user.password),
             family_password = Family.objects.get(family_password = new_family.family_password),
