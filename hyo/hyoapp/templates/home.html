@@ -19,7 +19,11 @@
     {{image.content}}
     {{image.image_author}}
 {% endfor %}
+
+<!-- todo icon -->
+<a href="{% url 'todo' %}">할일 리스트</a>
 <!-- nav-bar -->
+
 <div class="nav">
     <a href="{% url 'home' %}">
         <img class="nav-home"  src="{% static '../static/image/icon/home.svg'%}">

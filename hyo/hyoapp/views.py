@@ -184,17 +184,19 @@ def todo(request):
 
 def todo_new(request):
     if request.method == 'POST':
+        print(request.user)
+        
         Todolist.objects.create(
             task = request.POST['task'],
             due = request.POST['due'],
             tag = request.POST['tag'],
-            list_author = request.user
+            list_author = Member.objects.get(name = request.POST['username'])
         )
         return redirect ('todo')
     return render(request,'todo_new.html')
 
-def todo_delete(request, task_pk):
-    task = Todolist.objects.get(pk=task_pk)
+def todo_delete(request, todo_pk):
+    task = Todolist.objects.get(pk=todo_pk)
     task.delete()
     return redirect ('todo')
 

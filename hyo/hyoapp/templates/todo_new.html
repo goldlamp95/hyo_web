@@ -4,6 +4,7 @@
         <textarea type='text' name="task" cols="30" rows="10" placeholder="task detail"></textarea>
         <input type="date" name="due">
         <input type="text" name="tag" placeholder="가족을 태그하세요">
+        <input type="hidden" name="username" value="{{user.username}}">
         <button type="submit">추가하기</button> 
 </form>
 <a href="{% url 'todo'%}">Back</a>
