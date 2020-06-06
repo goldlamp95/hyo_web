@@ -1,0 +1,9 @@
+{% for member in members %}
+    <a href="{% url 'indiv_home' member.pk %}'>"{{member.profile}}</a>
+{% endfor %}
+
+{% for image in images %}
+    {{image.image}}
+    {{image.content}}
+    {{image.image_author}}
+{% endfor %}

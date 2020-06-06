@@ -1,0 +1,16 @@
+{{chosen_image.image}}
+{{chosen_image.content}}
+{{chosen_image.image_author}}
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="content" placeholder="댓글을 입력하세요">
+    <button type="submit">댓글 입력</button>
+</form>
+{% for comment in chosen_image.comments.all %}
+ {{comment.content}}
+ {{comment.author}}
+ {% if comment.author.pk == user.pk %}
+ <a href="{% url 'delte_comment' chosen_image.pk comment.pk %}">댓글 삭제</a>
+ <a href="{% url 'edit_comment' chosen_image.pk comment.pk %}">댓글 수정</a>
+ {% endif %}
+{% endfor %}

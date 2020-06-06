@@ -19,6 +19,12 @@ from hyoapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('new/', views.new, name="new"),
+    path('', views.home, name="home"),
+    path('detail_url/<int:image_pk>', views.detail, name="detail"),
+    path('delete_comment/<int:image_pk>/<int:comment_pk>', views.delete_comment, name="delete_comment"),
+    path('edit_comment/<int:image_pk>/<int:comment_pk>', views.edit_comment, name="edit_comment"),
+    path('indiv_home/<int:member_pk>', views.indiv_home, name="indiv_home"),
     path('todo', views.todo, name='todo'),
     path('todo_new',views.todo_new, name='todo_new'),
     path('todo_delete', views.todo_delete, name='todo_delete')
