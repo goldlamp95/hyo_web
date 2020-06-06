@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect   
-from .models import Family, Member, Image, Comment, Todolist, Dday
+from .models import Family, Member, Image, Comment, Todolist, Dday, Mission
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .utils import upload_and_save
 from time import gmtime, strftime
+import random
 
 def new(request):
     if (request.method == 'POST'):      
@@ -69,14 +70,15 @@ def todo_delete(request, task_pk):
 
 def dday(request):
     ddays = Dday.objects.all().order_by('deadline')
-    count = Dday.objects.count()
-    context = {'ddays' : ddays, 'count' : count}
+    latest_dday = ddays[0]
+    due = count(latest_dday)
+    context = {'ddays' : ddays, 'latest_dday' : latest_dday, 'due' : due}
     return render(request,'dday.html', context)
 
-def count(y_m_d):
+def count(dday):
     time = strftime("%Y-%m-%d", gmtime()).split('-')
     b = int(time[0])*365 + int(time[1])*12 +int(time[2])
-    a = int(y_m_d[0])*365 + int(y_m_d[1])*12 + int(y_m_d[2])
+    a = int(dday.deadline[0])*365 + int(dday.deadline[1])*12 + int(dday.deadline[2])
     if a>b:
         result = f"D-{a-b}"
     else:
@@ -102,3 +104,7 @@ def shop(request):
 
 def account(request):
     return render(request, 'account.html')
+
+def mission(request):
+    mission_list = Mission.objects.all()
+    return render(request, 'mission.html', {'mission_list': mission_list})

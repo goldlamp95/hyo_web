@@ -49,4 +49,6 @@ class Dday (models.Model):
     title = models.CharField(max_length=50)
     deadline = models.DateTimeField()
 
+class Mission (models.Model):
+    mission_list = models.CharField(max_length = 50)
 
