@@ -72,6 +72,7 @@ def login(request):
 
 
 def signup(request):
+    print('여기여기', request.POST)
     if(request.method == 'POST'):
         #2) 같은 username으로 회원가입을 시도하면 오류가난다
         found_user = User.objects.filter(username=request.POST['individual_id'])
@@ -106,12 +107,14 @@ def family_signup(request):
     if request.method == "POST":
         found_family = Family.objects.filter(family_name = request.POST['family_name'])
         found_user = User.objects.filter(username=request.POST['individual_id'])
-
+        found_familypassword = Family.objects.filter(family_password = request.POST['family_password'])
+        if (len(found_familypassword)>0) : 
+            error = '해당 가족 비밀번호는 이미 존재합니다'
+            return render(request, 'registration/family_signup.html', {'error': error})
         if (len(found_family)>0) : 
             error = '해당 가족 이름은 이미 존재합니다'
             return render(request, 'registration/family_signup.html', {'error': error})
 
-        print(request.POST)
         if(len(found_user)>0):
             error = 'username이 이미 존재합니다' 
             return render(request, 'registration/signup.html', {'error' : error})
