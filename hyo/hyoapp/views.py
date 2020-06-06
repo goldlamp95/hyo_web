@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect   
-from .models import Family, Member, Image, Comment
+from .models import Family, Member, Image, Comment, Todolist, Dday
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .utils import upload_and_save
+from time import gmtime, strftime
+
 def new(request):
     if (request.method == 'POST'):      
         file_to_upload = request.FILES.get('img')
@@ -65,3 +67,32 @@ def todo_delete(request, task_pk):
     task.delete()
     return redirect ('todo')
 
+def dday(request):
+    ddays = Dday.objects.all().order_by('deadline')
+    count = Dday.objects.count()
+    context = {'ddays' = ddays, 'count' = count}
+    return render(request,'dday.html', context)
+
+def count(y_m_d):
+    time = strftime("%Y-%m-%d", gmtime()).split('-')
+    b = int(time[0])*365 + int(time[1])*12 +int(time[2])
+    a = int(y_m_d[0])*365 + int(y_m_d[1])*12 + int(y_m_d[2])
+    if a>b:
+        result = f"D-{a-b}"
+    else:
+        result = f"D+{b-a}"
+    return result
+
+def dday_new(request):
+    if request.method == 'POST':
+        Dday.objects.create(
+            title = request.POST['title'],
+            deadline = request.POST['date']
+        )
+        return redirect ('dday')
+    return render (request, 'dday_new.html')
+
+def dday_delete(request, dday_pk):
+    dday = Dday.objects.get(pk=dday_pk)
+    dday.delete()
+    return redirect ('dday')
