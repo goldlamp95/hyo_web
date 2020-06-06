@@ -231,8 +231,8 @@ def dday_delete(request, dday_pk):
     dday.delete()
     return redirect ('dday')
 
-def shop(request):
-    return render(request,'shop.html')
+def shopping(request):
+    return render(request,'shopping.html')
 
 def account(request):
     return render(request, 'account.html')
@@ -243,3 +243,4 @@ def mission(request):
 
 def index(request):
     return render(request, 'index.html')    
+

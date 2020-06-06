@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{% static '../static/base.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static '../static/shopping.css'%}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+{% endblock %}
+{% block content %}
+<body>
+    <div class="top">
+        <div class="logo_wrapper center">
+        <div class="logo"><img class="logo_img" src="{% static 'image/icon/logo_v1.png' %}" ></div>
+        </div>
+
+        <div class="ad"><img class="ad_img" src="{% static 'image/ad.JPG' %}" ></div>
+
+        <div class="center">
+            <div class="element_wrapper center">
+                <div class="element center">부모님께</div>
+                <div class="element center">자녀에게</div>
+                <div class="element center">가족끼리</div>
+            </div>
+        </div>
+        <div class="center">
+            <div class="menu_wrapper">
+                <div><span class="material-icons">
+                    list
+                    </span>
+                </div>
+                <div>
+                    <span class="material-icons">
+                        search
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="product_wrapper center">
+                <img class="product_image" src="{% static 'image/icon/product1.JPG' %}" >  
+            <div class="content_wrapper center">
+                <div class="content">
+                    <div class="title">드로잉 무드등</div>
+                    <div class="ref">https://www.idus.com/flowers</div>
+                </div>
+                <div class="price">48000원</div>
+            </div>
+        </div>
+        <div class="product_wrapper center">
+                <img class="product_image" src="{% static 'image/icon/product2.JPG' %}" >  
+            <div class="content_wrapper center">
+                <div class="content">
+                    <div class="title">부모님 케이크</div>
+                    <div class="ref">https://www.idus.com/cakes</div>
+                </div>
+                <div class="price">33900원</div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
