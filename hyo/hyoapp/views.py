@@ -41,6 +41,6 @@ def edit_comment(request, image_pk, comment_pk):
     return render(request, 'edit_comment.html')
 
 def indiv_home(request, member_pk):
-    member_images = Image.object.filter(pk= member_pk)
+    member_images = Image.objects.filter(pk= member_pk)
     return render(request,'indiv_home.html', {'member_images':member_images})
 
