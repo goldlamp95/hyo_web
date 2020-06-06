@@ -7,7 +7,11 @@ from .utils import upload_and_save
 from datetime import datetime
 def new(request):
     if (request.method == 'POST'):      
-               
+        print(request.POST)
+        s3_url = 'https://hyohyobucket.s3.ap-northeast-2.amazonaws.com/'
+        now = datetime.now().strftime("%Y%H%M%S")
+
+
         file_to_upload = request.FILES.get('img')
         file_name = file_to_upload.name.replace("+","").replace(" ","")
         upload_and_save(request, file_to_upload,file_name)   
@@ -15,10 +19,10 @@ def new(request):
         image = Image.objects.create(
             image = s3_url + now + file_name,
             content = request.POST['content'],
-            image_author = request.user,
+            image_author = Member.objects.get(name = request.POST['username'])
     )
         return redirect('home')
-    return redirect('new')
+    return render(request, 'new.html')
 
         
 
