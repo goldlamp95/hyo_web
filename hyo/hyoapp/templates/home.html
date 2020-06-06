@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% for member in members %}
     <a href="{% url 'indiv_home' member.pk %}"><img src={{member.profile}}></img></a>
     
@@ -8,3 +9,4 @@
     {{image.content}}
     {{image.image_author}}
 {% endfor %}
+

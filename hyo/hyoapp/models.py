@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 class Family(models.Model):
     family_name = models.CharField(max_length =100)
     family_password= models.CharField(max_length = 50)

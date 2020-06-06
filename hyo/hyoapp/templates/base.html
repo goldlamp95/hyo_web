@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>Base_Document</title>{% endblock title %}
+</head>
+<body>
+    
+    <div class="nav-bar">
+        <a class="nav-item" href="{% url 'home' %}">HOME</a>
+        {% if user.is_authenticated %}
+
+        <div class="nav-item">안녕하세요, {{ user.username }} </div>
+        <a class="nav-item" href="{% url 'logout' %}">로그아웃</a>
+        {% else %}
+        <a class="nav-item" href="{% url 'login' %}">로그인</a>
+        <a class="nav-item" href="{% url 'signup' %}">회원가입</a>
+        {% endif %}
+
+    </div>
+    {% block content %}
+
+    {% endblock content %}
+    
+    
+
+    <!-- <div id="navbar">
+        <a class = "nav-item" href = "{}"">homebutton</a>
+        <a class = "nav-item" href = "{}">과녁판</a>
+        <a class = "nav-item" href = "{}">새로 추가하기</a>
+        <a class = "nav-item" href = "{}">e-commerce</a>
+        <a class = "nav-item" href = "{}">profile</a>
+    </div>  -->
+</body>
+</html>
+
