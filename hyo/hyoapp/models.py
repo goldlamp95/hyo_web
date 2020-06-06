@@ -36,3 +36,19 @@ class Comment(models.Model):
     def __str__(self):
         return self.content
 
+class Todolist (models.Model):
+    task = models.CharField(max_length = 100)
+    due = models.DateTimeField()
+    list_author = models.ForeignKey(User, on_delete = models.CASCADE, related_name ='lists')
+    tag = models.ForeignKey(User, on_delete = models.CASCADE, related_name='tag')
+
+    def __str__(self):
+        return self.task
+
+class Dday (models.Model):
+    title = models.CharField(max_length=50)
+    deadline = models.DateTimeField()
+
+class Mission (models.Model):
+    mission_list = models.CharField(max_length = 50)
+

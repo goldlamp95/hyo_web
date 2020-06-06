@@ -31,5 +31,13 @@ urlpatterns = [
     path('delete_comment/<int:image_pk>/<int:comment_pk>', views.delete_comment, name="delete_comment"),
     path('edit_comment/<int:image_pk>/<int:comment_pk>', views.edit_comment, name="edit_comment"),
     path('indiv_home/<int:member_pk>', views.indiv_home, name="indiv_home"),
-
+    path('todo', views.todo, name='todo'),
+    path('todo_new',views.todo_new, name='todo_new'),
+    path('todo_delete', views.todo_delete, name='todo_delete'),
+    path('dday', views.dday, name='dday'),
+    path('dday_new', views.dday_new, name='dday_new'),
+    path('dday_delete', views.dday_delete, name='dday_delete'),
+    path('shop',views.shop, name='shop'),
+    path('account',views.account,name='account'),
+    path('mission/', views.mission, name="mission")
 ]

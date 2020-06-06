@@ -1,0 +1,7 @@
+<h1>Dday</h1>
+{% for dday in ddays %}
+    {{member.profile}}
+    {{dday.title}}
+    {{dday.count}}
+{% endif %}
+<a href="{% url 'todo_delete'%}">삭제</a>
