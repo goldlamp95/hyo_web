@@ -6,12 +6,18 @@
 {% block content %}
 <!-- profile-bar -->
 <div class="top-bar">
-    {{latest_dday.title}}
-    {{due}}
+    <div></div>
+    <div class="d-day">
+        <p class="first-d-day">D-3 <span class="second-d-day">엄마 생신</span></p>
+    </div>
+    <div>
+        <a href="{% url 'todo' %}">
+            <img class="calendar" src="{% static "../static/image/icon/calendar_1.png" %}" alt="">
+        </a>
+    </div>
 </div>
 {% for member in members %}
     <a href="{% url 'indiv_home' member.pk %}"><img src={{member.profile}}></img></a>
-
 {% endfor %}
 
 {% for image in images %}

@@ -47,7 +47,8 @@ class Todolist (models.Model):
 
 class Dday (models.Model):
     title = models.CharField(max_length=50)
-    deadline = models.DateTimeField()
+    deadline = models.CharField(max_length=20)
+    left = models.CharField(max_length = 20, null=True)
 
 class Mission (models.Model):
     mission_list = models.CharField(max_length = 50)

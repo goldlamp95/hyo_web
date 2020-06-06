@@ -200,12 +200,11 @@ def todo_delete(request, task_pk):
 
 def dday(request):
     ddays = Dday.objects.all().order_by('deadline')
-    latest_dday = ddays[0]
-    due = count(latest_dday)
-    context = {'ddays' : ddays, 'latest_dday' : latest_dday, 'due' : due}
+    count = Dday.objects.count()
+    context = {'ddays' : ddays, 'count' : count}
     return render(request,'dday.html', context)
 
-def count(dday):
+def count(y_m_d):
     time = strftime("%Y-%m-%d", gmtime()).split('-')
     b = int(time[0])*365 + int(time[1])*12 +int(time[2])
     a = int(dday.deadline[0])*365 + int(dday.deadline[1])*12 + int(dday.deadline[2])
@@ -219,7 +218,8 @@ def dday_new(request):
     if request.method == 'POST':
         Dday.objects.create(
             title = request.POST['title'],
-            deadline = request.POST['date']
+            deadline = request.POST['deadline'],
+            left = count(y_m_d)
         )
         return redirect ('dday')
     return render (request, 'dday_new.html')
