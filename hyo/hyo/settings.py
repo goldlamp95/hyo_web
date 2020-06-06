@@ -10,9 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os
 
+import os, json
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+with open(os.path.join(BASE_DIR, 'hyo/config/index.json')) as f: 
+    secrets = json.loads(f.read())
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 

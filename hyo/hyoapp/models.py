@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Family(models.Model):
     family_name = models.CharField(max_length =100)
     family_password= models.CharField(max_length = 50)
@@ -11,11 +10,12 @@ class Family(models.Model):
 
 class Member(models.Model):
     name= models.CharField(max_length = 50)
-    individual_id= models.ForeignKey(User, db_column = 'username', on_delete= models.CASCADE, related_name='user_id')
-    individual_password= models.ForeignKey(User, db_column = 'password', on_delete= models.CASCADE, related_name='user_password')
+    individual_id= models.ForeignKey(User, db_column= 'username', on_delete= models.CASCADE, related_name='user_id')
+    individual_password= models.ForeignKey(User, db_column= 'password', on_delete= models.CASCADE, related_name='user_password')
     family_password = models.ForeignKey(Family, db_column= 'family_password', on_delete = models.CASCADE, related_name ='passwords')
     birthday = models.DateTimeField()
-    profile = models.TextField(null = True)
+    profile = models.TextField()
+    point = models.TextField(null=True)
 
     def __str__(self):
         return self.name
@@ -35,3 +35,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
