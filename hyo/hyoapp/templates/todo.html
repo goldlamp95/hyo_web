@@ -1,23 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
     <h1>Todo</h1>
-    {% for task in tasks %}
-        <div>
-        할일: {{task.task}}
-        duedate: {{task.due}}
-        해줄사람:{{task.tag}}
-        작성자:{{task.list_author}}
-        <a href="{% url 'todo_delete' task.pk %}">완료버튼</a>
-        </div>
-    {% endfor %}
     <a href="{% url 'todo_new' %}">할일 작성하기</a>
-    
-</body>
+    <img src="{% static 'image/icon/calendar.jpeg' %}">
+    {% for task in tasks %}
+    <ul>
+        <li>
+
+            <a class="trash-icon" href="{% url 'todo_delete' task.pk %}" id="delete_comment"><span class="material-icons">delete</span></a>
+
+            <div id = "todolist">
+                <div id = "todolist1">
+                    <div>해줄사람:{{task.tag}}</div>
+                    <div>작성자:{{task.list_author}}</div>
+                </div>
+                <div id = "todolist2">
+                    <div id="task">할일: {{task.task}}</div>
+                    <div id = "duedate">duedate: {{task.due}}</div>
+                </div>
+            </div>
+        
+        </li>
+    </ul>
+    {% endfor %}
+{% endblock content %}
 </html>

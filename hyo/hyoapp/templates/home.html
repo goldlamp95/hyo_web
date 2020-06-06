@@ -17,6 +17,7 @@
     </div>
 </div>
 
+
 <div class="member_imgs">
     {% for member in members %}
     <a href="{% url 'indiv_home' member.pk %}"><img class="member_img" src={{member.profile}}></img></a>
@@ -44,7 +45,7 @@
     <a href="{% url 'new' %}">
         <img class="nav-new" src="{% static '../static/image/icon/plus.svg'%}">
     </a>
-    <a href="{% url 'shop' %}">
+    <a href="{% url 'shopping' %}">
         <img class="nav-shop" src="{% static '../static/image/icon/shop.svg'%}">
     </a>
     <a href="{% url 'account' %}">
