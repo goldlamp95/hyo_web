@@ -1,10 +1,29 @@
-<h1>Todo_new</h1>
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href={% static "todo_new.css"%}>
+{% endblock %}
+{% block content %}
+<div class="box_logo">
+    <img class="logo" src={% static "../static/image/icon/logo_v1.png" %} alt="My Image">               
+    <div class="logo_title">일정추가하기</div> 
+</div>
+  
 <form method="POST">
     {% csrf_token %}
-        <textarea type='text' name="task" cols="30" rows="10" placeholder="task detail"></textarea>
-        <input type="date" name="due">
-        <input type="text" name="tag" placeholder="가족을 태그하세요">
+    <div class="todo_boxes">
+        <textarea class="text_area" type='text' name="task" cols="30" rows="10" placeholder="일정을 입력하세요"></textarea>
+        <input class="inp_date" type="date" name="due">
+        <input class="inp_tag" type="text" name="tag" placeholder="#가족을 태그하세요">
         <input type="hidden" name="username" value="{{user.username}}">
-        <button type="submit">추가하기</button> 
+        <button class="btn_add" type="submit">추가하기</button> 
+        <div class="for_btn_back">
+            <a class="btn_back" href="{% url 'todo'%}">뒤로가기</a>
+        </div>
+    </div>
+        
 </form>
-<a href="{% url 'todo'%}">Back</a>
+
+
+
+{% endblock content %}

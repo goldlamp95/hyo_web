@@ -1,0 +1,26 @@
+.mission_title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.point{
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    background-color: #40837B;
+    color: white;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mission_tree{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.tree{
+    width: 200px;
+}

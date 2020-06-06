@@ -3,8 +3,76 @@
     margin: 0;
 }
 
+hr{
+    border: 0.1px solid rgb(155, 199, 194);
+}
+/* top-bar */
+.calendar {
+    width: 30px;
+}
 
+.d-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #EAF2F1;
+}
 
+.d-day p {
+    padding: 8px 15px;
+}
+
+.first-d-day {
+    color: #40837B;
+    font-weight: 700;
+}
+
+.second-d-day {
+    color: black;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.feed_img{
+    width: 300px;
+    margin: 10px 0px;
+}
+
+.feed_imgs{
+    display: flex;
+    flex-direction: column;
+}
+
+.feed_name{
+    font-weight: bold;
+}
+.member_imgs{
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+}
+
+.member_img{
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    margin: 5px;
+}
+.top-bar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+/* nav-bar */
 .profile-bar {
     background-color: black;
     width: 100%;

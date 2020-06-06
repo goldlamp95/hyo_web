@@ -6,24 +6,35 @@
 {% block content %}
 <!-- profile-bar -->
 <div class="top-bar">
-    {{latest_dday.title}}
-    {{due}}
+    <div></div>
+    <div class="d-day">
+        <p class="first-d-day">D-3 <span class="second-d-day">엄마 생신</span></p>
+    </div>
+    <div>
+        <a href="{% url 'todo' %}">
+            <img class="calendar" src="{% static "../static/image/icon/calendar_1.png" %}" alt="">
+        </a>
+    </div>
 </div>
-{% for member in members %}
-    <a href="{% url 'indiv_home' member.pk %}"><img src={{member.profile}}></img></a>
+
+
+<div class="member_imgs">
+    {% for member in members %}
+    <a href="{% url 'indiv_home' member.pk %}"><img class="member_img" src={{member.profile}}></img></a>
+    {% endfor %}
+</div>
+<hr></hr>
+<div class="wrapper">
+<div class="feed_imgs">
+        {% for image in images %}
+        <a href="{% url 'detail' image.pk %}"><img class="feed_img" src={{image.image}}></img></a>
+        <div class="feed_name">작성자: {{image.image_author}}</div> 
+        {{image.content}}
+</div>
+</div>
+
 {% endfor %}
-<a href="{% url 'todo' %}">todo</a>
-
-{% for image in images %}
-<a href="{% url 'detail' image.pk %}"><img src={{image.image}}></img></a>
-    {{image.content}}
-    {{image.image_author}}
-{% endfor %}
-
-<!-- todo icon -->
-<a href="{% url 'todo' %}">할일 리스트</a>
-<!-- nav-bar -->
-
+<!— nav-bar —>
 <div class="nav">
     <a href="{% url 'home' %}">
         <img class="nav-home"  src="{% static '../static/image/icon/home.svg'%}">
@@ -42,4 +53,3 @@
     </a>
 </div>
 {% endblock %}
-
