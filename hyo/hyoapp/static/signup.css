@@ -1,0 +1,145 @@
+input {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: flex;
+    text-align: center;
+    /* -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical; */
+    cursor: text;
+    margin: 0em;
+    font: 15px Arial;
+    padding: 1px 0px;
+    /* border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;  */
+}
+
+.box_logo{
+    margin: 30px 0px 0px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+    left: 50%;
+    top: 50%;
+}
+
+.logo_mention{
+    color: #A4ABAC;
+    text-align: center;
+    font-size: 14px;
+}
+.logo{
+    width: 200px;
+    align-self: center;
+}
+
+.step{
+    font-size: 17px;
+    color:#40837B;
+    font-weight: bold;
+}
+.inner_input{
+    margin: 20px 0px 0px 0px;
+    left: 50%;
+    top: 50%;
+}
+.input_boxes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 220px;
+    position: relative;
+    margin: 0 auto;  
+}
+
+.input_family{
+    display: flex;
+    flex-direction: column;
+}
+
+.family_mention{
+    font-size: 14px;
+    color: #40837B;
+    margin: 8px 0px;
+    text-align: center;
+}
+.family_password{
+    width: 220px;
+    height: 38px;
+    border: 1px solid #EAF2F1;
+    border-radius: 3px;
+    background-color: #EAF2F1;
+}
+
+.family_signup{
+    text-align: center;
+}
+
+.you_mention{
+    font-size: 14px;
+    color:#40837B;
+    margin: 8px 0px;
+    text-align: center;
+}
+.input_you{
+    margin: 20px 0px 10px 0px;
+}
+.your_name{
+    margin: 0px 0px 5px 0px;
+    width: 220px;
+    height: 38px;
+    border: 1px solid #EAF2F1;
+    border-radius: 3px;
+    background-color: #EAF2F1;
+}
+
+.your_id, .your_pw{
+    margin: 5px 0px 5px 0px;
+    width: 220px;
+    height: 38px;
+    border: 1px solid #EAF2F1;
+    border-radius: 3px;
+    background-color: #EAF2F1;
+}
+
+
+.for_btn_submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn_submit{
+    margin: 20px 0 0;
+    width: 95px;
+    height: 35px;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #40837B;
+}
+
+.alpha_you{
+    margin: 10px 0px 10px 0px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+}
+
+.birthday{
+    border-color: none;
+    /* background-color:#EAF2F1; */
+}
