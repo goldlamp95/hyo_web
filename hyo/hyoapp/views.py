@@ -2,11 +2,18 @@ from django.shortcuts import render,redirect
 from .models import Family, Member, Image, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import auth
 from .utils import upload_and_save
+from datetime import datetime
 def new(request):
     if (request.method == 'POST'):      
         file_to_upload = request.FILES.get('img')
         upload_and_save(request, file_to_upload)   
+        image = Image.objects.create(
+        image = s3_url + now + file_to_upload.name,
+        content = request.POST['content'],
+        image_author = request.user,
+    )
     return redirect('home')
 
 
@@ -118,14 +125,19 @@ def family_signup(request):
             password = request.POST['individual_password']      
     
         )
-
+        file_to_upload = request.FILES.get('profile_pic')
+        print(request.FILES)
+        
+        context = upload_and_save(request, file_to_upload)
+        print(context)
+        
         new_member = Member.objects.create (
-            name = request.POST['name'],
+            name = request.POST.get('name',False),
             individual_id= User.objects.get(username = new_user.username),
             individual_password= User.objects.get(password=new_user.password),
             family_password = Family.objects.get(family_password = new_family.family_password),
             birthday = request.POST['birthday'],
-            profile = s3_url + str(request.user.pk)+'/' + now+file_to_upload.name
+            profile = context['s3_url'] + context['now']+file_to_upload.name
         )
         auth.login(request, new_user, backend = 'django.contrib.auth.backends.ModelBackend')
         return redirect ('home')
