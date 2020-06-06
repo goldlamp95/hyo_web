@@ -1,4 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+
+class Family(models.Model):
+    family_name = models.CharField(max_length =100)
+    family_password= models.CharField(max_length = 50)
+
 
 class Member(models.Model):
     name= models.CharField(max_length = 50)
@@ -10,10 +17,6 @@ class Member(models.Model):
 
     def __str__(self):
         return self.name
-
-class Family(models.Model):
-    family_name = models.CharField(max_length =100)
-    family_password= models.CharField(max_length = 50)
 
 
 class Image(models.Model):
@@ -30,7 +33,7 @@ class Todolist (models.Model):
     task = models.CharField(max_length = 100)
     due = models.DateTimeField()
     list_author = models.ForeignKey(User, on_delete = models.CASCADE, related_name ='lists')
-    tag = models.ForeignKey(User, related_name='lists')
+    tag = models.ForeignKey(User, on_delete = models.CASCADE, related_name='lists')
 
     def __str__(self):
         return self.task
