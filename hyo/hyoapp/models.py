@@ -26,3 +26,12 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete= models.CASCADE, related_name='comments')
     content = models.TextField(null = True)
 
+class Todolist (models.Model):
+    task = models.CharField(max_length = 100)
+    due = models.DateTimeField()
+    list_author = models.ForeignKey(User, on_delete = models.CASCADE, related_name ='lists')
+    tag = models.ForeignKey(User, related_name='lists')
+
+    def __str__(self):
+        return self.task
+

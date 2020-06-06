@@ -1,0 +1,7 @@
+<h1>Todo</h1>
+{% for task in tasks %}
+{{member.profile}}
+{{task.task}}
+{{task.due}}
+{% endfor %}
+<a href="{% url 'todo_delete'%}">완료버튼</a>

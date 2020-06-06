@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from hyoapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('todo', views.todo, name='todo'),
+    path('todo_new',views.todo_new, name='todo_new'),
+    path('todo_delete', views.todo_delete, name='todo_delete')
 ]

@@ -11,4 +11,25 @@ def home(request):
     posts = Post.objects.all()
 
     return render(request, 'home.html', {'posts': posts })
-# Create your views here.
+
+def todo(request):
+    tasks = Todolist.objects.all().order_by('due')
+    context = {'tasks': tasks}
+    return render(request,'todo.html', context)
+
+def todo_new(request):
+    if request.method == 'POST':
+        Todolist.objects.create(
+            task = request.POST['task'],
+            due = request.POST['due'],
+            tag = request.POST['tag'],
+            list_author = request.user
+        )
+        return redirect ('todo')
+    return render(request,'todo_new.html')
+
+def todo_delete(request, task_pk):
+    task = Todolist.objects.get(pk=task_pk)
+    task.delete()
+    return redirect ('todo')
+
