@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static '../static/base.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static '../static/todo.css'%}">
     {% endblock %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>매일해효</title>
 </head>
 <body>
     {% block content %}
     {% endblock %}
+    <div class="temp" style="padding-top: 50px"></div>
     <div class="nav">
         <a href="{% url 'home' %}">
             <img class="nav-home"  src="{% static '../static/image/icon/home.svg'%}">
