@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static '../static/base.css'%}">
+    {% endblock %}
+    <title>매일해효</title>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+    <div class="nav">
+        <a href="{% url 'home' %}">
+            <img src="{% static '../static/image/icon/home.svg'%}">
+        </a>
+        <a href="{% url 'mission' %}">
+            <img src="{% static '../static/image/icon/mission_1.svg'%}">
+        </a>
+        <a href="{% url 'new' %}">
+            <img src="{% static '../static/image/icon/plus.svg'%}">
+        </a>
+        <a href="{% url 'shop' %}">
+            <img src="{% static '../static/image/icon/shop.svg'%}">
+        </a>
+        <a href="{% url 'account' %}">
+            <img src="{% static '../static/image/icon/account.svg'%}">
+        </a>
+    </div>
+</body>
+</html>

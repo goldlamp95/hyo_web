@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% for member in members %}
     <a href="{% url 'indiv_home' member.pk %}'>"{{member.profile}}</a>
 {% endfor %}

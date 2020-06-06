@@ -96,3 +96,9 @@ def dday_delete(request, dday_pk):
     dday = Dday.objects.get(pk=dday_pk)
     dday.delete()
     return redirect ('dday')
+
+def shop(request):
+    return render(request,'shop.html')
+
+def account(request):
+    return render(request, 'account.html')

@@ -30,5 +30,7 @@ urlpatterns = [
     path('todo_delete', views.todo_delete, name='todo_delete'),
     path('dday', views.dday, name='dday'),
     path('dday_new', views.dday_new, name='dday_new'),
-    path('dday_delete', views.dday_delete, name='dday_delete')
+    path('dday_delete', views.dday_delete, name='dday_delete'),
+    path('shop',views.shop, name='shop'),
+    path('account',views.account,name='account')
 ]
