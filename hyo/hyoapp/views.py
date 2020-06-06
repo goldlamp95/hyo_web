@@ -185,6 +185,7 @@ def todo(request):
 def todo_new(request):
     if request.method == 'POST':
         print(request.user)
+        print(request.POST)
         
         Todolist.objects.create(
             task = request.POST['task'],
@@ -242,5 +243,20 @@ def mission(request):
     return render(request, 'mission.html', {'mission_list': mission_list})
 
 def index(request):
+    if request.method == "POST":
+        found_user = auth.authenticate(
+            username = request.POST["username"],
+            password = request.POST["password"]
+        )
+
+
+        if (found_user is None):
+            error = '아이디 또는 비밀번호가 틀렸습니다'
+            return render (request, 'registration/login.html', {'error': error})
+        
+        auth.login (request, found_user, backend = 'django.contrib.auth.backends.ModelBackend')
+        return redirect('home')
+
+        return redirect(request.GET.get('next', '/'))
     return render(request, 'index.html')    
 
