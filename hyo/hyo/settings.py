@@ -127,6 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # S3 Storage
+
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 #AWS Acess

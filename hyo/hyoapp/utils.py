@@ -13,15 +13,11 @@ def upload_and_save(request, file_to_upload):
         )
     s3 = session.resource('s3')
 
-    user_pk = str(request.user.pk)+'/'
+ 
     now = datetime.now().strftime("%Y%H%M%S")
-    img_object = s3.Bucket(AWS_STROAGE_BUCKET_NAME).put_object(
-        Key = now + user.pk,
+    img_object = s3.Bucket(AWS_STORAGE_BUCKET_NAME).put_object(
+        Key = now+ file_to_upload.name,
         Body = file_to_upload
     )
     s3_url = 'https://hyohyobucket.s3.ap-northeast-2.amazonaws.com/'
-    image = Image.objects.create(
-        image = s3_url + user.pk+ now + file_to_upload.name,
-        content = request.POST['content'],
-        image_author = request.user,
-    )
+    return {'s3_url':s3_url, 'now': now} 

@@ -4,10 +4,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .utils import upload_and_save
+from datetime import datetime
 def new(request):
     if (request.method == 'POST'):      
         file_to_upload = request.FILES.get('img')
         upload_and_save(request, file_to_upload)   
+        image = Image.objects.create(
+        image = s3_url + now + file_to_upload.name,
+        content = request.POST['content'],
+        image_author = request.user,
+    )
     return redirect('home')
 
 
@@ -66,6 +72,7 @@ def login(request):
 
 
 def signup(request):
+    print('여기여기', request.POST)
     if(request.method == 'POST'):
         #2) 같은 username으로 회원가입을 시도하면 오류가난다
         found_user = User.objects.filter(username=request.POST['individual_id'])
@@ -100,30 +107,14 @@ def family_signup(request):
     if request.method == "POST":
         found_family = Family.objects.filter(family_name = request.POST['family_name'])
         found_user = User.objects.filter(username=request.POST['individual_id'])
-
-        file_to_upload = request.FILES.get('profile_pic')
-        print('111🧓🏼',file_to_upload)
-        session = Session(
-            aws_access_key_id = AWS_ACCESS_KEY_ID,
-            aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
-            region_name = AWS_S3_REGION_NAME
-        )
-
-        s3 = session.resource('s3')
-
-        now = datetime.now().strftime("%Y%H%M%S")
-        img_object = s3.Bucket(AWS_STORAGE_BUCKET_NAME).put_object(
-            Key = str(request.user.pk)+'/' + now +file_to_upload.name,
-            Body = file_to_upload
-        )
-
-        s3_url = 'https://hyohyobucket.s3.ap-northeast-2.amazonaws.com/'
-
+        found_familypassword = Family.objects.filter(family_password = request.POST['family_password'])
+        if (len(found_familypassword)>0) : 
+            error = '해당 가족 비밀번호는 이미 존재합니다'
+            return render(request, 'registration/family_signup.html', {'error': error})
         if (len(found_family)>0) : 
             error = '해당 가족 이름은 이미 존재합니다'
             return render(request, 'registration/family_signup.html', {'error': error})
 
-        print(request.POST)
         if(len(found_user)>0):
             error = 'username이 이미 존재합니다' 
             return render(request, 'registration/signup.html', {'error' : error})
@@ -139,14 +130,19 @@ def family_signup(request):
             password = request.POST['individual_password']      
     
         )
+        file_to_upload = request.FILES.get('profile_pic')
+        print(request.FILES)
+        
+        context = upload_and_save(request, file_to_upload)
+        print(context)
         
         new_member = Member.objects.create (
-            name = request.POST.get('name', False),
+            name = request.POST.get('name',False),
             individual_id= User.objects.get(username = new_user.username),
             individual_password= User.objects.get(password=new_user.password),
             family_password = Family.objects.get(family_password = new_family.family_password),
             birthday = request.POST['birthday'],
-            profile = s3_url + str(request.user.pk)+'/' + now+file_to_upload.name
+            profile = context['s3_url'] + context['now']+file_to_upload.name
         )
         auth.login(request, new_user, backend = 'django.contrib.auth.backends.ModelBackend')
         return redirect ('home')
