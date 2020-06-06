@@ -1,30 +1,53 @@
 {% extends 'base.html' %}
-
-
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href={% static "family_signup.css"%}>
+{% endblock %}
 {% block content %}
-<h1>가족 등록</h1>
+
 {% if error %}
 <h3 style="color: red;">{{ error }}</h3>
 {% endif %}
 
+<div class="box_logo">
+    <img class="logo" src={% static "../static/image/icon/logo_v3.png" %} alt="My Image">
+    <div class="logo_mention">일상의 소소한 효,</div>
+    <div class="logo_mention">매일해효에 오신걸 환영합니다!<div>
+</div>
 <form method="POST" enctype = "multipart/form-data"> {% csrf_token %}
-    <!-- 가족 등록 -->
-    <input type="text" name="family_name" placeholder = "가족 이름을 등록해주세요">
-    <input type="password" name="family_password" placeholder = "가족 비밀번호를 등록해주세요">
-
-
-    <!-- 개인 계정 등록 -->
-    <input type="text" name="name" placeholder = "이름">
-    <input type="text" name="individual_id" placeholder = "새로운 ID를 등록해주세요">
-    <input type="password" name="individual_password" placeholder = "비밀번호">
-    <input type="date" name="birthday" placeholder = "생일날짜">
-    <input type="file" name="profile_pic" placeholder = "개인 프로필 사진을 업로드해주세요">
-    
-    <button type = "submit">가입하기</button>
+    <div class="inner_input">
+        <div class="input_boxes">
+            <div class="input_family">
+                <div class="step">Step1.</div>
+                <div class="family_mention">가족 이름을 등록해주세요</div>
+                <input type="text" class="family_password" name="family_name" placeholder = "가족 이름">
+                <div class="family_mention">가족 비밀번호를 설정해주세요</div>
+                <input type="password" class="family_password" name="family_password" placeholder = "가족 비밀번호">
+            </div>
+            
+            <div class="input_you">
+                <div class="step">Step2.</div>
+                <div class="you_mention">사용하실 정보를 입력해주세요</div>
+                <input type="text" class="your_name" name="name" placeholder = "이름">
+                <input type="text" class="your_id" name="individual_id" placeholder = "아이디">
+                <input type="password" class="your_pw" name="individual_password" placeholder = "비밀번호">
+            </div>
+            
+            <div class="alpha_you">
+                <div class="step">Step3.</div>
+                <div class="you_mention">생일을 입력해주세요</div>
+                <input class="birthday" type="date" name="birthday" placeholder = "생일날짜">
+            <div class="alpha_you2">
+                <div class="you_mention">프로필사진을 등록해주세요</div>
+                <input class="profile_pic" type="file" name="profile_pic" placeholder = "프로필사진"> 
+            </div>
+        </div>
+    </div> 
         
-        
+    <div class="for_btn_submit">
+        <button class="btn_submit" type = "submit">가입하기</button>
+    </div>
+      
 </form>
-
-
 
 {% endblock content%}
