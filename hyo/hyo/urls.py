@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from hyoapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('mission/', views.mission, name="mission")
+    path('mission_success/', views.mission_success, name='mission_success')
 ]

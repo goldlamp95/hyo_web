@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="mission_title">
+        <div></div>
+        <h1>Your mission</h1>
+        <div>mission points</div>
+    </div>
+   
+    <div class="mission_tree">
+        <div>tree img</div>
+        <div>tree name</div>
+    </div>
+
+    <div class="your_mission">
+    {% for your_mission in your_missions %}
+        <div class="mission">
+            {{ your_mission }}
+        </div>
+        <a class="button" href="{% url 'mission_success' %}">미션완료버튼</a>
+    {% endfor%}
+    </div>
+</body>
+</html>
