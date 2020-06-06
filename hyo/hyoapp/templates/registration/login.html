@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>로그인</h1>
+{% if error %}
+<h3 style="color: red;"> {{ error }} </h3>
+{% endif %}
+<form method="POST" >
+    {% csrf_token %}
+    <input type = "text" name="username" placeholder="이름을 입력해주세요">
+    <input type = "password" name="password" placeholder="비밀번호를 입력해주세요">
+    <button type="submit">로그인</button>
+    <!-- <input type="multipart/form-date" placeholder="프로필사진을 업로드해주세요">
+    <input type="text" placeholder="가족 관계를 밝혀주세요">
+    <input type="date" placeholder="생일을 입력해주세요"> -->
+    <!-- <h3>프로필 사진 미리보기</h3> -->
+    <!-- {% for post in posts %}
+    <div>
+        <img src="{{ post.img }}">
+    </div>
+    {% endfor %} -->
+</form>
+
+{% endblock content %}

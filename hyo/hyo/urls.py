@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
+
 from hyoapp import views
 
 urlpatterns = [
+    path('registration/login', views.login, name="login"),
+    path('registration/signup', views.signup, name = "signup"),
+    path('registration/family_signup', views.family_signup, name="family_signup"),
+    path('registration/logout', views.logout, name="logout"),
     path('admin/', admin.site.urls),
     path('new/', views.new, name="new"),
     path('', views.home, name="home"),
@@ -33,5 +39,5 @@ urlpatterns = [
     path('dday_delete', views.dday_delete, name='dday_delete'),
     path('shop',views.shop, name='shop'),
     path('account',views.account,name='account'),
-    path('mission/', views.mission, name="mission"),
+    path('mission/', views.mission, name="mission")
 ]

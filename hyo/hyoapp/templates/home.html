@@ -9,18 +9,17 @@
     {{latest_dday.title}}
     {{due}}
 </div>
-<div class="profile-bar">
-    {% for member in members %}
-    <a class="son" href="{% url 'indiv_home' member.pk %}">{{member.profile}}</a>
-    {% endfor %}
-</div>
-<div>
-    {% for image in images %}
-    {{image.image}}
+{% for member in members %}
+    
+    <a href="{% url 'indiv_home' member.pk %}"><img src={{member.profile}}></img></a>
+    
+{% endfor %}
+
+{% for image in images %}
+<a href="{% url 'detail' image.pk %}"><img src={{image.image}}></img></a>
     {{image.content}}
     {{image.image_author}}
-    {% endfor %}
-</div>
+{% endfor %}
 <!-- nav-bar -->
 <div class="nav">
     <a href="{% url 'home' %}">
@@ -39,7 +38,5 @@
         <img class="nav-account" src="{% static '../static/image/icon/account.svg'%}">
     </a>
 </div>
-{% endblock %}}
-
-
+{% endblock %}
 

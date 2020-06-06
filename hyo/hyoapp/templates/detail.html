@@ -1,4 +1,5 @@
-{{chosen_image.image}}
+<img src="{{chosen_image.image}}" />
+
 {{chosen_image.content}}
 {{chosen_image.image_author}}
 <form method="POST">
@@ -10,7 +11,7 @@
  {{comment.content}}
  {{comment.author}}
  {% if comment.author.pk == user.pk %}
- <a href="{% url 'delte_comment' chosen_image.pk comment.pk %}">댓글 삭제</a>
+ <a href="{% url 'delete_comment' chosen_image.pk comment.pk %}">댓글 삭제</a>
  <a href="{% url 'edit_comment' chosen_image.pk comment.pk %}">댓글 수정</a>
  {% endif %}
 {% endfor %}
