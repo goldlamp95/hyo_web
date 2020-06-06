@@ -9,10 +9,15 @@
 <body>
     <h1>Todo</h1>
     {% for task in tasks %}
-        {{task.task}}
-        {{task.due}}
+        <div>
+        할일: {{task.task}}
+        duedate: {{task.due}}
+        해줄사람:{{task.tag}}
+        작성자:{{task.list_author}}
+        <a href="{% url 'todo_delete' task.pk %}">완료버튼</a>
+        </div>
     {% endfor %}
-    <a href="{% url 'todo_delete'%}">완료버튼</a>
+    <a href="{% url 'todo_new' %}">할일 작성하기</a>
     
 </body>
 </html>
