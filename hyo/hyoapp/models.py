@@ -9,7 +9,7 @@ class Family(models.Model):
         return self.family_name
 
 class Member(models.Model):
-    name= models.CharField(max_length = 50, null=True)
+    name = models.CharField(max_length = 50, null=True)
     individual_id= models.ForeignKey(User, db_column= 'username', on_delete= models.CASCADE, related_name='user_id')
     individual_password= models.ForeignKey(User, db_column= 'password', on_delete= models.CASCADE, related_name='user_password')
     family_password = models.ForeignKey(Family, db_column='family_password', on_delete = models.CASCADE, related_name='passwords')

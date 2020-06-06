@@ -7,14 +7,20 @@ from .utils import upload_and_save
 from datetime import datetime
 def new(request):
     if (request.method == 'POST'):      
+               
         file_to_upload = request.FILES.get('img')
-        upload_and_save(request, file_to_upload)   
+        file_name = file_to_upload.name.replace("+","").replace(" ","")
+        upload_and_save(request, file_to_upload,file_name)   
+
         image = Image.objects.create(
-        image = s3_url + now + file_to_upload.name,
-        content = request.POST['content'],
-        image_author = request.user,
+            image = s3_url + now + file_name,
+            content = request.POST['content'],
+            image_author = request.user,
     )
-    return redirect('home')
+        return redirect('home')
+    return redirect('new')
+
+        
 
 
 def home(request):
@@ -54,8 +60,8 @@ def indiv_home(request, member_pk):
 def login(request):
     if request.method == "POST":
         found_user = auth.authenticate(
-            individual_id = request.POST["username"],
-            individual_password = request.POST["password"]
+            username = request.POST["username"],
+            password = request.POST["password"]
         )
 
 
@@ -83,16 +89,29 @@ def signup(request):
         #3) 그런데 error가 떴다는 것을 signup.html에서 메시지가 뜨도록 하게 해야한다
 
         #1) 새로운 회원가입을 할때 이름을 받아들임
+        
+        file_to_upload = request.FILES.get('profile_pic')
+        file_name = file_to_upload.name.replace("+","").replace(" ","")
+             
+        print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',request.FILES)
+        
+        context = upload_and_save(request, file_to_upload,file_name)
+        print(context)
+
         new_user = User.objects.create_user(
             username = request.POST['individual_id'],
             password = request.POST['individual_password']
         )
+        print('#############',new_user.username)
+        print('#############',new_user.password)
 
         new_member = Member.objects.create (
-            name = request.POST['name'],
+            name = request.POST.get('name',False),
+            individual_id= User.objects.get(username = new_user.username),
+            individual_password= User.objects.get(password=new_user.password),
+            family_password = Family.objects.get(family_password = request.POST['family_password']),
             birthday = request.POST['birthday'],
-            # profile = s3_url + str(request.user.pk)+'/' + now+file_to_upload.name
-
+            profile = context['s3_url'] + context['now']+ file_name
         )
 
     
@@ -130,10 +149,12 @@ def family_signup(request):
             password = request.POST['individual_password']      
     
         )
+                
         file_to_upload = request.FILES.get('profile_pic')
+        file_name = file_to_upload.name.replace("+","").replace(" ","")
         print(request.FILES)
         
-        context = upload_and_save(request, file_to_upload)
+        context = upload_and_save(request, file_to_upload,file_name)
         print(context)
         
         new_member = Member.objects.create (
@@ -142,7 +163,7 @@ def family_signup(request):
             individual_password= User.objects.get(password=new_user.password),
             family_password = Family.objects.get(family_password = new_family.family_password),
             birthday = request.POST['birthday'],
-            profile = context['s3_url'] + context['now']+file_to_upload.name
+            profile = context['s3_url'] + context['now']+file_name
         )
         auth.login(request, new_user, backend = 'django.contrib.auth.backends.ModelBackend')
         return redirect ('home')

@@ -5,7 +5,9 @@ from boto3.session import Session
 from datetime import datetime
 from django.contrib.auth.models  import User 
 
-def upload_and_save(request, file_to_upload):
+def upload_and_save(request, file_to_upload,file_name):
+    print('AWS_SECRET', AWS_SECRET_ACCESS_KEY)
+    print('AWS_ACCESS_KEY', AWS_ACCESS_KEY_ID)
     session= Session(
             aws_access_key_id=AWS_ACCESS_KEY_ID,
             aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
@@ -16,8 +18,10 @@ def upload_and_save(request, file_to_upload):
  
     now = datetime.now().strftime("%Y%H%M%S")
     img_object = s3.Bucket(AWS_STORAGE_BUCKET_NAME).put_object(
-        Key = now+ file_to_upload.name,
+        Key = now + file_name,
         Body = file_to_upload
     )
+    print('&&&&&&&&&&&&&&&&&&&&&&&&',img_object)
+
     s3_url = 'https://hyohyobucket.s3.ap-northeast-2.amazonaws.com/'
     return {'s3_url':s3_url, 'now': now} 

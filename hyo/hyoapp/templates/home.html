@@ -1,3 +1,17 @@
 {% extends 'base.html' %}
 
-<h1>홈페이지</h1>
+{% block content %}
+{% for member in members %}
+    
+    <a href="{% url 'indiv_home' member.pk %}"><img src={{member.profile}}></img></a>
+    
+{% endfor %}
+
+{% for image in images %}
+<img src={{image.image}}></img>
+    {{image.content}}
+    {{image.image_author}}
+{% endfor %}
+
+<a href="{% url 'new' %}"></a>
+{% endblock content %}
