@@ -1,13 +1,15 @@
 from django.shortcuts import render,redirect   
 from .models import Family, Member, Image, Comment
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .utils import upload_and_save
-
 def new(request):
     if (request.method == 'POST'):      
         file_to_upload = request.FILES.get('img')
         upload_and_save(request, file_to_upload)   
     return redirect('home')
-# Create your views here.
+
+
 def home(request):
     images = Image.objects.all()
     members = Member.objects.all()

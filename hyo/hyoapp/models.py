@@ -14,6 +14,7 @@ class Member(models.Model):
     family_password = models.ForeignKey(Family, db_column= 'family_password', on_delete = models.CASCADE, related_name ='passwords')
     birthday = models.DateTimeField()
     profile = models.TextField()
+    point = models.TextField(null=True)
 
     def __str__(self):
         return self.name
