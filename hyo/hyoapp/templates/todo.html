@@ -1,7 +1,18 @@
-<h1>Todo</h1>
-{% for task in tasks %}
-{{member.profile}}
-{{task.task}}
-{{task.due}}
-{% endfor %}
-<a href="{% url 'todo_delete'%}">완료버튼</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo</h1>
+    {% for task in tasks %}
+        {{task.task}}
+        {{task.due}}
+    {% endfor %}
+    <a href="{% url 'todo_delete'%}">완료버튼</a>
+    
+</body>
+</html>
